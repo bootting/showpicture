@@ -2,10 +2,10 @@
     <view>
         <!-- 分类列表 开始 -->
         <view class="category_wrap">
-            <view class="category_item" v-for="item in category" :key="item.id">
+            <navigator :url="`/pages/imgCategory/index?id=${item.id}`" class="category_item" v-for="item in category" :key="item.id">
                 <image mode="aspectFill" :src="item.cover"></image>
                 <text class="category_name">{{item.name}}</text>
-            </view>
+            </navigator>
         </view>
         <!-- 分类列表 结束 -->
     </view>
