@@ -2,9 +2,9 @@
     <scroll-view class="scrollView" @scrolltolower="handleScrollToLower" scroll-y v-if="recommendlist.length > 0">
         <!-- 推荐模块 开始-->
         <view class="recommend_wrap">
-            <view class="recommend_item" v-for="item in recommendlist" :key="item.id">
+            <navigator class="recommend_item" v-for="item in recommendlist" :key="item.id" :url="`/pages/album/index?id=${item.target}`">
                 <image mode="widthFix" :src="item.thumb"></image>
-            </view>
+            </navigator>
         </view>
         <!-- 推荐模块 结束 -->
 
@@ -22,8 +22,10 @@
 
             <!-- 今日推荐列表 开始 -->
            <view class="todayList_Wrap">
-                <view class="today_item" v-for="item in monthes.items" :key="item.id">
-                    <image :src="item.thumb + item.rule.replace('$<Height>',360)"></image>
+                <view class="today_item" v-for="(item,index) in monthes.items" :key="item.id">
+                    <go-Detail :list="monthes.items" :index="index">
+                        <image  mode="aspectFill" :src="item.thumb + item.rule.replace('$<Height>',360)"></image>
+                    </go-Detail>
                 </view>
            </view>
             <!-- 今日推荐列表 结束 -->
@@ -37,8 +39,10 @@
                <text>热门</text>
            </view>
            <view class="hot_content">
-                <view class="hot_item" v-for="item in vertical" :key="item.id">
-                     <image mode="widthFix" :src="item.thumb"></image>
+                <view class="hot_item" v-for="(item,index) in vertical" :key="item.id">
+                    <go-Detail :list="vertical" :index="index">
+                        <image mode="widthFix" :src="item.thumb"></image>
+                    </go-Detail>
                 </view>
            </view>
        </view>
@@ -49,6 +53,8 @@
 <script>
 //引入时间处理插件
 import moment from "moment";
+//引入图片详情组件
+import {goDetail} from "@/components/goDetail";
 export default {
     data () {
         return {
@@ -83,6 +89,7 @@ export default {
                     if(this.recommendlist.length === 0) {
                         this.recommendlist = result.res.homepage[1].items;
                         this.monthes = result.res.homepage[2];
+                       
                         this.monthes.MM = moment(this.monthes.stime).format("MM");
                         this.monthes.DD = moment(this.monthes.stime).format("DD");
                     }
@@ -93,7 +100,7 @@ export default {
                         return
                     }
                     this.vertical = [...this.vertical,...result.res.vertical];
-                   
+                    
                 })
         },
         //滚动功能
@@ -106,6 +113,9 @@ export default {
                 uni.showToast({title:"没有更多的数据了~",icon:"none"});
             }
         }
+    },
+    components: {
+        goDetail
     }
 }
 </script>
