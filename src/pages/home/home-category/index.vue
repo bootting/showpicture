@@ -48,11 +48,14 @@ export default {
             height: 240rpx;
         }
         .category_name {
+            width: 100%;
+            height: 50rpx;
             position: absolute;
-            bottom: 10rpx;
-            left: 10rpx;
+            bottom: 0;
+            left: 0;
+            padding-left: 20rpx;
             color: #fff;
-            font-size: 36rpx;
+            font-size: 40rpx;
         }
     }
     
