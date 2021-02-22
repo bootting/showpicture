@@ -1,8 +1,8 @@
 <template>
     <view>
         <!-- 视频列表 开始 -->
-        <scroll-view scroll-y enable-flex  @scrolltolower="handleScrollToLower" class="vedio_wrap">
-            <view class="vedio_item" v-for="item in videowp" :key="item.id" @click="handleToVedio(item)">
+        <scroll-view scroll-y enable-flex  @scrolltolower="handleScrollToLower" class="video_wrap">
+            <view class="video_item" v-for="item in videowp" :key="item.id" @click="handleToVideo(item)">
                 <image mode="widthFix" :src="item.img"></image>
             </view>
         </scroll-view>
@@ -55,23 +55,24 @@ export default {
                 uni.showToast({title:"没有更多数据了哦~",icon:"none"});
             }
         },
-        handleToVedio(item) {
-            //把接收到的数据传递到全局对象中
-            getApp().globalData.vedio = item;
+        handleToVideo(item) {
+            // //把接收到的数据传递到全局对象中
+            getApp().globalData.video = item;
             uni.navigateTo({
-                url:"/pages/vedioPlay/index"
+                url:"/pages/videoPlay/index"
             })
+           
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.vedio_wrap {
+.video_wrap {
     display: flex;
     flex-wrap: wrap;
     height: calc(100vh - 36px);
-    .vedio_item {
+    .video_item {
         width: 33.33%;
         border: 5rpx solid #fff;
         image {}

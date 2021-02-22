@@ -15,10 +15,10 @@
        <!-- tab栏部分 结束 -->
        <view class="tab_content">
 		      	<view v-if="current < 4">
-		      		<vedio-main :urlobj = {url:items[current].url,params:items[current].params}></vedio-main>
+		      		<video-main :urlobj = {url:items[current].url,params:items[current].params}></video-main>
 		      	</view>
                 <view v-if="current === 4">
-		      		<vedio-cate></vedio-cate>
+		      		<video-cate></video-cate>
 		      	</view>
 	   </view>
 
@@ -27,14 +27,14 @@
 
 <script>
 //引入两个视频组件
-import vedioMain from "./vedio-main";
-import vedioCate from "./vedio-cate";
+import videoMain from "./video-main";
+import videoCate from "./video-cate";
 //引入分段器组件
 import {uniSegmentedControl } from "@dcloudio/uni-ui";
 export default {
     components: {
-        vedioMain,
-        vedioCate,
+        videoMain,
+        videoCate,
         uniSegmentedControl
     },
     data () {

@@ -26,7 +26,7 @@
             <view v-if="current === 3">
 		      		<home-album></home-album>
 		      	</view>
-		      </view>
+		 </view>
    </view>
 </template>
 
