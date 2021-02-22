@@ -30,6 +30,10 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> homeModule
 export default {
     data () {
         return {
